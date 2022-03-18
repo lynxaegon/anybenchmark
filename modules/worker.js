@@ -1,4 +1,4 @@
-let Socket = require("../protocols/ws");
+let Socket = require(process.argv[3]);
 
 class Worker {
     constructor() {

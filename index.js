@@ -19,6 +19,7 @@ cli.usage('[options] ws://localhost')
     .option('-B, --buffer <size>', 'size of the messages that are send', parseInt, 1024)
     .option('-W, --workers <cpus>', 'workers to be spawned', parseInt, os.cpus().length)
     .option('-G, --generator <file>', 'custom message generators')
+    .option('-P, --protocol <file>', 'protocol file')
     .version(require('./package.json').version)
     .parse(process.argv);
 
@@ -48,7 +49,8 @@ cluster.setupMaster({
     exec: path.resolve(__dirname, './modules/worker.js')
     , silent: false
     , args: [
-        cli.generator ? path.resolve(process.cwd(), cli.generator) : path.resolve(__dirname, './modules/generator.js')
+        cli.generator ? path.resolve(process.cwd(), cli.generator) : path.resolve(__dirname, './modules/generator.js'),
+        cli.protocol ? path.resolve(process.cwd(), cli.protocol) : path.resolve(__dirname, './protocols/ws.js')
     ]
 });
 
