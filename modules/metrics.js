@@ -141,6 +141,7 @@ Metrics.prototype.summary = function summary() {
     results.writeRow(['Connected', this.connections]);
     results.writeRow(['Disconnected', this.disconnects]);
     results.writeRow(['Failed', this.failures]);
+    results.writeRow(['Message Count', this.count]);
     results.writeRow(['RPS', (this.count / this.timing.duration * 1000).toFixed(2)]);
 
     results.writeRow(['Total transferred', this.send.bytes(2)]);
